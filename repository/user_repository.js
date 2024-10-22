@@ -25,9 +25,7 @@ function updateUser(user, id) {
     }
 
     let indiceUser = listUser.findIndex(user => user.id == id)
-    
     if(indiceUser == -1) return
-
     user.id = id
     listUser[indiceUser] = user
     return user
