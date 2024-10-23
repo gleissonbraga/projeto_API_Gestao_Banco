@@ -12,5 +12,5 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/user', user_router)
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta http://localhost:${PORT}`)
+    console.log(`Servidor => http://localhost:${PORT}`)
 })
