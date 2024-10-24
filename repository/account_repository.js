@@ -1,13 +1,48 @@
-const userRepository = require('./user_repository')
+
+let account = [{ "account": 42587568, "name": "Gleisson", "balance": 0}]
 
 
-let account = []
+// conta, saldo, 
 
-
-
-function created() {
-    const idNumerico = Math.floor(10000000 + Math.random() * 90000000); // Gera um número entre 10000000 e 99999999
-    console.log(idNumerico);
+function createdAccount(user){
+    const balance = 0
+    account.push({
+        account: user.account,
+        name: user.name,
+        balance: balance
+    }) 
 }
 
-created()
+function showAccount(){
+    return account
+}
+
+
+function depositMoney(accountBank, value){
+    if(!account || value < 0){
+        return
+    }
+
+    let userAccount = account.findIndex(acc => acc.account == accountBank)
+    if(userAccount == -1) return
+    account[userAccount].balance += value
+    return account[userAccount]
+}
+
+function withdrawMoney(accountBank, value){
+    if(!account || value < 0){
+        return
+    }
+
+    let userAccount = account.findIndex(acc => acc.account == accountBank)
+    if(userAccount == -1) return
+    account[userAccount].balance -= value
+    return account[userAccount]
+}
+
+module.exports = {
+    createdAccount,
+    showAccount,
+    depositMoney,
+    withdrawMoney
+}

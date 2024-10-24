@@ -1,5 +1,9 @@
+const accountRepository = require('./account_repository')
+
+
 let listUser = []
 let idGenerator = 1
+const accountGenerator = () => Math.floor(100000000 + Math.random() * 900000000)
 
 
 function showUsers(){
@@ -11,7 +15,9 @@ function createdUser(user){
         return
     }
     user.id = idGenerator++
+    user.account = accountGenerator()
     listUser.push(user)
+    accountRepository.createdAccount(user)
     return user
 }
 
