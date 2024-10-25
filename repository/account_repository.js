@@ -13,8 +13,10 @@ function createdAccount(user){
     }) 
 }
 
-function showAccount(){
-    return account
+function showBalance(accountBank){
+    let userAccount = account.findIndex(acc => acc.account == accountBank)
+    if(userAccount == -1) return
+    return account[userAccount].balance
 }
 
 
@@ -30,19 +32,25 @@ function depositMoney(accountBank, value){
 }
 
 function withdrawMoney(accountBank, value){
-    if(!account || value < 0){
+    if(!accountBank || value < 0){
         return
     }
 
     let userAccount = account.findIndex(acc => acc.account == accountBank)
     if(userAccount == -1) return
-    account[userAccount].balance -= value
-    return account[userAccount]
+    if(value > account[userAccount].balance){
+        return account[userAccount]
+    } else {
+        account[userAccount].balance -= value
+        return true
+    }
+
+
 }
 
 module.exports = {
     createdAccount,
-    showAccount,
+    showBalance,
     depositMoney,
     withdrawMoney
 }
