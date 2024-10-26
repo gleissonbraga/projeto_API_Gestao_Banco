@@ -31,9 +31,19 @@ function withdrawMoney(req, res){
     
 }
 
+function sendPix(req, res){
+    const value = req.body.balance
+    const accountBank = req.params.conta
+    try {
+        res.json(accountService.sendPix(accountBank, value))
+    } catch (error) {
+        res.status(error.id).json(error)
+    }
+}
 
 module.exports = {
     showBalance,
     withdrawMoney,
-    depositMoney
+    depositMoney,
+    sendPix
 }

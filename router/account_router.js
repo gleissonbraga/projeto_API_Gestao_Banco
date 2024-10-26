@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/depositar/:conta', accountController.depositMoney)
 router.post('/sacar/:conta', accountController.withdrawMoney)
+router.get('/pix/:conta', accountController.sendPix)
 router.get('/saldo/:conta', accountController.showBalance)
 
 

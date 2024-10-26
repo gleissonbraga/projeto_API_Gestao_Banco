@@ -2,34 +2,54 @@ const accountRepository = require("../repository/account_repository")
 
 function showBalance(accountBank){
     let userBalance = accountRepository.showBalance(accountBank)
-    if(userBalance) {
-        throw {id: 200, msg: `Saldo R$ ${userBalance}`}
-    } else {
+    if(userBalance == undefined){
         throw {id: 404, msg: "Conta não encontrada"}
+    } else {
+        throw {id: 200, msg: `Saldo R$ ${userBalance}`}
     }
 }
 
+// ajustar status code
 function depositMoney(accountBank, value) {
     let valueDeposit = accountRepository.depositMoney(accountBank, value)
-    if(valueDeposit) {
-        throw {id: 200, msg: "Depósito realizado"}
+    if(valueDeposit == undefined){
+        throw {id: 404, msg: "Esta conta não existe!"}
     } else {
-        throw {id: 404, msg: "Esta conta não existe ou o valor inserido é inválido"}
+        if(valueDeposit) {
+            throw {id: 200, msg: "Depósito realizado"}
+        } else {
+            throw {id: 404, msg: "O valor inserido é inválido"}
+        }
     }
 }
 
 // refatorar metodo de lançamento de status (devido a não ter usuário o deposit.balance da erro)
 function withdrawMoney(accountBank, value){
     let valueWithdraw = accountRepository.withdrawMoney(accountBank, value)
-    if(valueWithdraw == true){
-        throw {id: 200, msg: "Saque realizado"}
+    if(valueWithdraw == undefined){
+        throw {id: 404, msg: "Esta conta não existe!"}
     } else {
-        throw {id: 422, msg: `Saldo insuficiente. Valor R$ ${deposit.balance}`}
+        if(valueWithdraw == true){
+            throw {id: 200, msg: "Saque realizado"}
+        } else {
+            throw {id: 422, msg: `Saldo insuficiente. Valor R$ ${valueWithdraw.balance}`}
+        }
+    }
+}
+
+
+function sendPix(accountBank, value) {
+    let userReceived = accountRepository.depositMoney(accountBank, value)
+    if(userReceived){
+        throw {id: 200, msg: `Seu pix foi enviado para ${userReceived.name} no valor de R$ ${userReceived.value}`}
+    } else {
+        throw {id: 404, msg: "Esta conta não existe!"}
     }
 }
 
 module.exports = {
     withdrawMoney,
     depositMoney,
-    showBalance
+    showBalance,
+    sendPix
 }

@@ -7,14 +7,19 @@ function createdAccount(user){
     account.push({
         account: user.account,
         name: user.name,
+        cpf: user.cpf,
         balance: balance
     }) 
 }
 
 function showBalance(accountBank){
     let userAccount = account.findIndex(acc => acc.account == accountBank)
-    if(userAccount == -1) return
-    return account[userAccount].balance
+    if(userAccount == undefined){
+        return undefined
+    } else {
+        if(userAccount == -1) return
+        return account[userAccount].balance
+    }
 }
 
 
@@ -24,11 +29,17 @@ function depositMoney(accountBank, value){
     }
 
     let userAccount = account.findIndex(acc => acc.account == accountBank)
-    if(userAccount == -1) return
-    account[userAccount].balance += value
-    transaction_repository(account[userAccount], value)
-    return account[userAccount]
+    if(userAccount == undefined){
+        return undefined
+    } else {
+        if(userAccount == -1) return
+        account[userAccount].balance += value
+        transaction_repository.createdDepositReceipt(account[userAccount], value)
+        return account[userAccount]
+    }
 }
+
+// account[userAccount].account == accountBank
 
 function withdrawMoney(accountBank, value){
     if(!accountBank || value < 0){
@@ -36,14 +47,30 @@ function withdrawMoney(accountBank, value){
     }
 
     let userAccount = account.findIndex(acc => acc.account == accountBank)
-    if(userAccount == -1) return
-    if(value > account[userAccount].balance){
-        return account[userAccount]
+    if(userAccount == undefined) {
+        return undefined
     } else {
-        account[userAccount].balance -= value
-        return true
+        if(userAccount == -1) return
+        if(value > account[userAccount].balance){
+            return account[userAccount]
+        } else {
+            account[userAccount].balance -= value
+            transaction_repository.createdWithdrawalReceipt(account[userAccount], value)
+            return true
+        }
+    }
+}
+
+function sendPix(accountBank, value){
+    if(!accountBank || value < 0){
+        return
     }
 
+    let userAccount = account.findIndex(acc => acc.account == accountBank)
+    if(userAccount == -1) return
+    account[userAccount].balance += value
+    transaction_repository.createdDepositPix(account[userAccount], value)
+    return {name: account[userAccount].name, valuePix: `${value}`}
 
 }
 
@@ -51,5 +78,6 @@ module.exports = {
     createdAccount,
     showBalance,
     depositMoney,
-    withdrawMoney
+    withdrawMoney,
+    sendPix
 }
