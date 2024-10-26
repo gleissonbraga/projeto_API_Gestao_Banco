@@ -15,12 +15,6 @@ app.use('/api/user', user_router)
 app.use('/api/conta', account_router)
 
 
-app.post('/bank/depositar/:conta', (req, res) => {
-    const valor = req.body.balance
-    const conta = req.params.conta
-    res.json(accountRepository.depositMoney(conta, valor))
-})
-
 app.listen(PORT, () => {
     console.log(`Servidor => http://localhost:${PORT}`)
 })

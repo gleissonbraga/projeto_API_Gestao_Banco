@@ -9,10 +9,19 @@ function showBalance(accountBank){
     }
 }
 
+function depositMoney(accountBank, value) {
+    let valueDeposit = accountRepository.depositMoney(accountBank, value)
+    if(valueDeposit) {
+        throw {id: 200, msg: "Depósito realizado"}
+    } else {
+        throw {id: 404, msg: "Esta conta não existe ou o valor inserido é inválido"}
+    }
+}
+
 
 function withdrawMoney(accountBank, value){
-    let deposit = accountRepository.withdrawMoney(accountBank, value)
-    if(deposit == true){
+    let valueWithdraw = accountRepository.withdrawMoney(accountBank, value)
+    if(valueWithdraw == true){
         throw {id: 200, msg: "Saque realizado"}
     } else {
         throw {id: 422, msg: `Saldo insuficiente. Valor R$ ${deposit.balance}`}
@@ -21,5 +30,6 @@ function withdrawMoney(accountBank, value){
 
 module.exports = {
     withdrawMoney,
+    depositMoney,
     showBalance
 }

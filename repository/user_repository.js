@@ -26,7 +26,7 @@ function findUser(id){
 }
 
 function updateUser(user, id) {
-    if(!user.name, user.cpf, user.password) {
+    if(!user.name || !user.cpf || !user.password) {
         return
     }
 

@@ -10,6 +10,16 @@ function showBalance(req, res){
     
 }
 
+function depositMoney(req, res){
+    const value = req.body.balance
+    const accountBank = req.params.conta
+    try {
+        res.json(accountService.depositMoney(accountBank, value))
+    } catch (error) {
+        res.status(error.id).json(error)
+    }
+}
+
 function withdrawMoney(req, res){
     const value = req.body.balance
     const accountBank = req.params.conta
@@ -24,5 +34,6 @@ function withdrawMoney(req, res){
 
 module.exports = {
     showBalance,
-    withdrawMoney
+    withdrawMoney,
+    depositMoney
 }
