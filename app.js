@@ -15,19 +15,6 @@ app.use('/api/user', user_router)
 app.use('/api/conta', account_router)
 
 
-app.get('/deposit', (req, res) => {
-    res.json(transaction_repository.showTransactionDeposit())
-})
-
-app.get('/withdraw', (req, res) => {
-    res.json(transaction_repository.showTransactionWithdrawal())
-})
-
-app.get('/pix', (req, res) => {
-    res.json(transaction_repository.showTransactionPix())
-})
-
-
 app.listen(PORT, () => {
     console.log(`Servidor => http://localhost:${PORT}`)
 })
