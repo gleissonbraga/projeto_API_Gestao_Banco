@@ -1,6 +1,3 @@
-const accountRepository = require('./account_repository')
-
-
 let listUser = []
 let idGenerator = 1
 const accountGenerator = () => Math.floor(100000000 + Math.random() * 900000000)
@@ -46,3 +43,6 @@ function deleteUser(id) {
 module.exports = {
    showUsers, createdUser, findUser, deleteUser, updateUser
 }
+
+
+
