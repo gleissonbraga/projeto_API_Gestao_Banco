@@ -1,8 +1,6 @@
+const transaction_repository = require('./transaction_repository')
+let account = []
 
-let account = [{ "account": 42587568, "name": "Gleisson", "balance": 0}]
-
-
-// conta, saldo, 
 
 function createdAccount(user){
     const balance = 0
@@ -28,6 +26,7 @@ function depositMoney(accountBank, value){
     let userAccount = account.findIndex(acc => acc.account == accountBank)
     if(userAccount == -1) return
     account[userAccount].balance += value
+    transaction_repository(account[userAccount], value)
     return account[userAccount]
 }
 

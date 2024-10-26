@@ -18,7 +18,7 @@ function depositMoney(accountBank, value) {
     }
 }
 
-
+// refatorar metodo de lançamento de status (devido a não ter usuário o deposit.balance da erro)
 function withdrawMoney(accountBank, value){
     let valueWithdraw = accountRepository.withdrawMoney(accountBank, value)
     if(valueWithdraw == true){
