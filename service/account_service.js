@@ -41,7 +41,7 @@ function withdrawMoney(accountBank, value){
 function sendPix(accountBank, value) {
     let userReceived = accountRepository.sendPix(accountBank, value)
     if(userReceived){
-        throw {id: 200, msg: `Seu pix foi enviado para ${userReceived.name} no valor de R$ ${userReceived.value}`}
+        throw {id: 200, msg: `Seu pix foi enviado para ${userReceived.name} no valor de R$ ${userReceived.valuePix}`}
     } else {
         throw {id: 404, msg: "Esta conta não existe!"}
     }

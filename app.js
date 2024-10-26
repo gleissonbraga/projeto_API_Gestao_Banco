@@ -23,7 +23,7 @@ app.get('/withdraw', (req, res) => {
     res.json(transaction_repository.showTransactionWithdrawal())
 })
 
-app.get('/pix/teste', (req, res) => {
+app.get('/pix', (req, res) => {
     res.json(transaction_repository.showTransactionPix())
 })
 

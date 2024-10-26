@@ -24,7 +24,8 @@ function createdDepositReceipt(account, value){
         cpf: account.cpf,
         account: account.account,
         valor: value,
-        transactionDate: format(new Date(),'dd/MM/yyyy')
+        transactionDate: format(new Date(),'dd/MM/yyyy'),
+        hours: format(new Date(), 'HH:mm')
     })
 }
 
@@ -34,7 +35,8 @@ function createdWithdrawalReceipt(account, value){
         cpf: account.cpf,
         account: account.account,
         valor: value,
-        transactionDate: format(new Date(),'dd/MM/yyyy')
+        transactionDate: format(new Date(),'dd/MM/yyyy'),
+        hours: format(new Date(), 'HH:mm')
     })
 }
 
@@ -44,9 +46,13 @@ function createdDepositPix(account, value) {
         cpf: account.cpf,
         account: account.account,
         valor: value,
-        transactionDate: format(new Date(),'dd/MM/yyyy')
+        transactionDate: format(new Date(),'dd/MM/yyyy'),
+        hours: format(new Date(), 'HH:mm')
     })
 }
+
+
+
 
 
 module.exports = {

@@ -70,7 +70,7 @@ function sendPix(accountBank, value){
     if(userAccount == -1) return
     account[userAccount].balance += value
     transaction_repository.createdDepositPix(account[userAccount], value)
-    return {name: account[userAccount].name, valuePix: `${value}`}
+    return {name: account[userAccount].name, valuePix: value}
 
 }
 
