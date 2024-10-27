@@ -110,9 +110,6 @@ function findAllTransactionPix(account){
 
 
 module.exports = {
-    showTransactionDeposit,
-    showTransactionWithdrawal,
-    showTransactionPix,
     createdDepositReceipt,
     createdWithdrawalReceipt,
     createdDepositPix
