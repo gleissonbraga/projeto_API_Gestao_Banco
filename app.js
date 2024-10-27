@@ -3,6 +3,7 @@ dotenv.config()
 const express = require('express')
 const user_router = require("./router/user_router")
 const account_router = require("./router/account_router")
+const transaction_router = require('./router/transaction_router')
 const loginController = require('./controller/login_controller')
 const authMiddleware = require('./middleware/auth_middleware')
 
@@ -14,8 +15,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.post('/api/login', loginController.login)
 
-app.use(authMiddleware.verifyAccess)
+app.use('/api/transacao', transaction_router)
 
+app.use(authMiddleware.verifyAccess)
 app.use('/api/user', user_router)
 app.use('/api/conta', account_router)
 

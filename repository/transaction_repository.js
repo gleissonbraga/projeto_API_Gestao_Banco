@@ -1,8 +1,59 @@
 const { format } = require('date-fns');
 
-let listTransactionsDeposit = []
-let listTransactionsWithdrawal = []
-let listTransactionsPix = []
+let listTransactionsDeposit = [{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "27/10/24",
+    hours: '18:32'
+},
+{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "25/10/24",
+    hours: '18:32'
+}]
+let listTransactionsWithdrawal = [{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "27/10/24",
+    hours: '18:32'
+},
+{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "25/10/24",
+    hours: '18:32'
+}]
+let listTransactionsPix = [{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "27/10/24",
+    hours: '18:32'
+},
+{
+    transaction: "Pix",
+    name: "Gleisson",
+    cpf: "85907219068",
+    account: 492184340,
+    valuePix: 2000,
+    transactionDate: "25/10/24",
+    hours: '18:32'
+}]
 
 
 function createdDepositReceipt(account, value){
@@ -11,7 +62,7 @@ function createdDepositReceipt(account, value){
         name: account.name,
         cpf: account.cpf,
         account: account.account,
-        valor: value,
+        valueDeposit: value,
         transactionDate: format(new Date(),'dd/MM/yyyy'),
         hours: format(new Date(), 'HH:mm')
     })
@@ -23,7 +74,7 @@ function createdWithdrawalReceipt(account, value){
         name: account.name,
         cpf: account.cpf,
         account: account.account,
-        valor: value,
+        valueWithdraw: value,
         transactionDate: format(new Date(),'dd/MM/yyyy'),
         hours: format(new Date(), 'HH:mm')
     })
@@ -35,7 +86,7 @@ function createdDepositPix(account, value) {
         name: account.name,
         cpf: account.cpf,
         account: account.account,
-        valor: value,
+        valuePix: value,
         transactionDate: format(new Date(),'dd/MM/yyyy'),
         hours: format(new Date(), 'HH:mm')
     })
@@ -53,6 +104,7 @@ function findATransactionDeposit(account, date){
         }
     }
 }
+
 
 function findATransactionWithdraw(account, date){
     if(!account || !date) return
@@ -82,35 +134,47 @@ function findATransactionPix(account, date){
 
 function findAllTransactionDeposit(account){
     if(!account) return
-    const findAccount = listTransactionsDeposit.filter(dep => dep.account === account)
-    if(findAccount) {
+    const findAccount = listTransactionsDeposit.filter(dep => dep.account == account)
+    if(findAccount.length > 0) {
         return findAccount
+    } else {
+        return undefined
     }
 }
+
+
 
 function findAllTransactionWithdraw(account){
     if(!account) return
-    const findAccount = listTransactionsWithdrawal.filter(dep => dep.account === account)
-    if(findAccount) {
+    const findAccount = listTransactionsWithdrawal.filter(dep => dep.account == account)
+    if(findAccount.length > 0) {
         return findAccount
+    } else {
+        return undefined
     }
 }
+
 
 function findAllTransactionPix(account){
     if(!account) return
-    const findAccount = listTransactionsPix.filter(dep => dep.account === account)
-    if(findAccount) {
+    const findAccount = listTransactionsPix.filter(dep => dep.account == account)
+    if(findAccount.length > 0) {
         return findAccount
+    } else {
+        return undefined
     }
 }
-
-
-
 
 
 
 module.exports = {
     createdDepositReceipt,
     createdWithdrawalReceipt,
-    createdDepositPix
+    createdDepositPix,
+    findATransactionDeposit,
+    findATransactionWithdraw,
+    findATransactionPix,
+    findAllTransactionDeposit,
+    findAllTransactionWithdraw,
+    findAllTransactionPix
 }
