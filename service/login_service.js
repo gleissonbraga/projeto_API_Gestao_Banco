@@ -28,10 +28,9 @@ function login(user){
 
 function verifyToken(token) {
     try {
-        const payload = jwt.verify(token, PALAVRA_CHAVE);
+        const payload = jwt.verify(token, process.env.JWT_KEY);
         console.log("Payload", payload);
-    } catch (err) {
-        console.log("Erro no Token", err)
+    } catch (error) {
         throw  { id: 401, msg: "Token Inválido!" }
     }
 }
