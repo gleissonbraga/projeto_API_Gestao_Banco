@@ -25,6 +25,7 @@ function login(user){
     }
 }
 
+
 function verifyToken(token) {
     try {
         const payload = jwt.verify(token, process.env.JWT_KEY);
