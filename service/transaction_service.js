@@ -33,7 +33,7 @@ function findAllTransactionDeposit(account){
     if(allDeposits == undefined){
         throw {id: 400, msg: "Transações não encontradas."}
     } else {
-        return allDeposits
+        return {id: 200, allDeposits}
     }
 }
 
@@ -49,9 +49,9 @@ function findAllTransactionWithdraw(account){
 function findAllTransactionPix(account){
     let allPix = transactionRepository.findAllTransactionPix(account)
     if(allPix == undefined){
-        throw {id: 200, allPix}
-    } else {
         throw {id: 400, msg: "Transações não encontradas."}
+    } else {
+        throw {id: 200, allPix}
     }
 }
 

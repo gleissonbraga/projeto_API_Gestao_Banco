@@ -15,11 +15,11 @@ app.use(express.urlencoded({ extended: true }))
 
 app.post('/api/login', loginController.login)
 
-app.use('/api/transacao', transaction_router)
 
-app.use(authMiddleware.verifyAccess)
+// app.use(authMiddleware.verifyAccess)
 app.use('/api/user', user_router)
 app.use('/api/conta', account_router)
+app.use('/api/transacao', transaction_router)
 
 
 app.listen(PORT, () => {

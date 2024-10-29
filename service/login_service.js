@@ -3,23 +3,22 @@ const userRepository = require('../repository/user_repository')
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt')
 
-
-
-
-
-
 function login(user){
     if(!user || !user.cpf || !user.password) {
         return
     }
     let userCpf = userRepository.getUserbyCpf(user.cpf)
+    
+    if(!userCpf || isValidPassword == false){
+        throw {id: 404, msg: "Usuário não existe"}
+    }
+    
     let isValidPassword = bcrypt.compareSync(user.password, userCpf.password)
+    // userCpf.cpf == user.cpf && 
+    if(isValidPassword == true) {
 
-    if(userCpf.cpf === user.cpf && isValidPassword == true) {
-
-        const payload = { id: userCpf.id, cpf: userCpf.cpf };
+        const payload = {name: userCpf.name, Account: userCpf.account, cpf: userCpf.cpf };
         const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: '1h'})
-        // const token = jwt.sign(payload, JWT_KEY, { expiresIn: '1h'})
         throw {id: 201, msg: token}
     } else {
         throw { id: 401, msg: "Usuario ou senha inválidos" } 

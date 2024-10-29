@@ -12,6 +12,7 @@ function showBalance(accountBank){
 // ajustar status code
 function depositMoney(accountBank, value) {
     let valueDeposit = accountRepository.depositMoney(accountBank, value)
+    // if(valueDeposit == undefined || req.user.account !== valueDeposit.account) // Testar outro dia
     if(valueDeposit == undefined){
         throw {id: 404, msg: "Esta conta não existe!"}
     } else {

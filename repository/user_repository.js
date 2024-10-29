@@ -2,19 +2,23 @@ const accountRepository = require('./account_repository')
 const bcrypt = require('bcrypt')
 
 
-let listUser = [{
-	name: "Gleisson",
-	cpf: "85907219068",
-	password: "$2b$10$C63dZB8/H5j/UCbcxBoJNeZDOFlPAuw0yFVUTNKpFbSMBAiInfy82",
-	id: 1,
-	account: 492184340
-}]
+let listUser = []
+
+// {
+// 	name: "Gleisson",
+// 	cpf: "85907219068",
+// 	password: "$2b$10$C63dZB8/H5j/UCbcxBoJNeZDOFlPAuw0yFVUTNKpFbSMBAiInfy82",
+// 	id: 1,
+// 	account: 492184340
+// }
+
+
 let idGenerator = 1
 const accountGenerator = () => Math.floor(100000000 + Math.random() * 900000000)
 
 
 function showUsers(){
-    return listUser
+    return listUser.map(({ password, ...userWithoutPassword }) => userWithoutPassword);
 }
 
 function createdUser(user){

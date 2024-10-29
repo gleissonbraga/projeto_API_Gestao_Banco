@@ -1,59 +1,8 @@
 const { format } = require('date-fns');
 
-let listTransactionsDeposit = [{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "27/10/24",
-    hours: '18:32'
-},
-{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "25/10/24",
-    hours: '18:32'
-}]
-let listTransactionsWithdrawal = [{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "27/10/24",
-    hours: '18:32'
-},
-{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "25/10/24",
-    hours: '18:32'
-}]
-let listTransactionsPix = [{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "27/10/24",
-    hours: '18:32'
-},
-{
-    transaction: "Pix",
-    name: "Gleisson",
-    cpf: "85907219068",
-    account: 492184340,
-    valuePix: 2000,
-    transactionDate: "25/10/24",
-    hours: '18:32'
-}]
+let listTransactionsDeposit = []
+let listTransactionsWithdrawal = []
+let listTransactionsPix = []
 
 
 function createdDepositReceipt(account, value){
@@ -126,7 +75,7 @@ function findATransactionPix(account, date){
     if(findAccount == undefined || findDate == undefined) {
         return undefined
     } else {
-        if(findAccount !== -1 && findDate !== -1 && findAccount === findDate){
+        if(findAccount !== -1 && findDate !== -1 && findAccount == findDate){
             return listTransactionsPix[findAccount]
         }
     }

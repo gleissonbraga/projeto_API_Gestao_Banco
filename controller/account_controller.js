@@ -10,9 +10,12 @@ function showBalance(req, res){
     
 }
 
+
+
 function depositMoney(req, res){
     const value = req.body.balance
     const accountBank = req.params.conta
+    // const loggedInUserAccount = req.user.account
     try {
         res.json(accountService.depositMoney(accountBank, value))
     } catch (error) {
@@ -23,6 +26,7 @@ function depositMoney(req, res){
 function withdrawMoney(req, res){
     const value = req.body.balance
     const accountBank = req.params.conta
+    // loggedInUserAccount = req.user.account
     try {
         res.json(accountService.withdrawMoney(accountBank, value))
     } catch (error) {
