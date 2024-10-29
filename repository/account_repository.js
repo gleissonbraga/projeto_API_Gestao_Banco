@@ -39,7 +39,6 @@ function depositMoney(accountBank, value){
     }
 }
 
-// account[userAccount].account == accountBank
 
 function withdrawMoney(accountBank, value){
     if(!accountBank || value < 0){

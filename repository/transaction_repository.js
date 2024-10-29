@@ -43,41 +43,33 @@ function createdDepositPix(account, value) {
 
 function findATransactionDeposit(account, date){
     if(!account || !date) return
-    const findAccount = listTransactionsDeposit.findIndex(dep => dep.account == account)
-    const findDate = listTransactionsDeposit.findIndex(dep => dep.transactionDate == date)
-    if(findAccount == undefined || findDate == undefined) {
-        return undefined
+    const findDateandAccount = listTransactionsDeposit.filter(dep => dep.account == account && dep.transactionDate == date)
+    if(findDateandAccount.length > 0) {
+        return findDateandAccount
     } else {
-        if(findAccount !== -1 && findDate !== -1 && findAccount === findDate){
-            return listTransactionsDeposit[findAccount]
-        }
+        return undefined
     }
 }
 
 
 function findATransactionWithdraw(account, date){
     if(!account || !date) return
-    const findAccount = listTransactionsWithdrawal.findIndex(dep => dep.account == account)
-    const findDate = listTransactionsWithdrawal.findIndex(dep => dep.transactionDate == date)
-    if(findAccount == undefined || findDate == undefined) {
-        return undefined
+    const findDateandAccount = listTransactionsWithdrawal.filter(dep => dep.account == account && dep.transactionDate == date)
+    if(findDateandAccount.length > 0) {
+        return findDateandAccount
     } else {
-        if(findAccount !== -1 && findDate !== -1 && findAccount === findDate){
-            return listTransactionsWithdrawal[findAccount]
-        }
+        return undefined
     }
 }
 
+
 function findATransactionPix(account, date){
     if(!account || !date) return
-    const findAccount = listTransactionsPix.findIndex(dep => dep.account == account)
-    const findDate = listTransactionsPix.findIndex(dep => dep.transactionDate == date)
-    if(findAccount == undefined || findDate == undefined) {
-        return undefined
+    const findDateandAccount = listTransactionsPix.filter(dep => dep.account == account && dep.transactionDate == date)
+    if(findDateandAccount.length > 0) {
+        return findDateandAccount
     } else {
-        if(findAccount !== -1 && findDate !== -1 && findAccount == findDate){
-            return listTransactionsPix[findAccount]
-        }
+        return undefined
     }
 }
 

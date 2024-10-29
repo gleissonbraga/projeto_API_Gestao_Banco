@@ -33,6 +33,11 @@ function createdUser(user){
     listUser.push(user)
     accountRepository.createdAccount(user)
     return user
+
+    // Caso eu queira retirar a senha criptografada no retorno do json
+    // const userWithoutPassword = { ...user };
+    // delete userWithoutPassword.password;
+    // return userWithoutPassword;
 }
 
 function findUser(id){
@@ -44,9 +49,13 @@ function updateUser(user, id) {
         return
     }
 
+    const criptPassword = bcrypt.hashSync(user.password, 10)
+    user.password = criptPassword
+
     let indiceUser = listUser.findIndex(user => user.id == id)
     if(indiceUser == -1) return
     user.id = id
+    user.account = listUser[indiceUser].account
     listUser[indiceUser] = user
     return user
 }
