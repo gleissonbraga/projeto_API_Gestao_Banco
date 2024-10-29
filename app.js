@@ -7,6 +7,8 @@ const transaction_router = require('./router/transaction_router')
 const logout_router = require('./router/logout_router')
 const loginController = require('./controller/login_controller')
 const authMiddleware = require('./middleware/auth_middleware')
+const user_controller = require('./controller/user_controller')
+
 
 const app = express()
 const PORT = 3000
@@ -14,8 +16,8 @@ const PORT = 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.post('/cadastrar', user_controller.createdUser)
 app.post('/api/login', loginController.login)
-
 
 app.use(authMiddleware.verifyAccess)
 app.use('/api/user', user_router)

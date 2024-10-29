@@ -23,9 +23,13 @@ function showBalance(accountBank){
 }
 
 
-function depositMoney(accountBank, value){
+function depositMoney(accountBank, value, loggedUserAccount){
     if(!account || value < 0){
         return
+    }
+
+    if(accountBank != loggedUserAccount) {
+        return undefined
     }
 
     let userAccount = account.findIndex(acc => acc.account == accountBank)
@@ -40,10 +44,15 @@ function depositMoney(accountBank, value){
 }
 
 
-function withdrawMoney(accountBank, value){
+function withdrawMoney(accountBank, value, loggedUserAccount){
     if(!accountBank || value < 0){
         return
     }
+
+    if(accountBank != loggedUserAccount) {
+        return undefined
+    }
+
 
     let userAccount = account.findIndex(acc => acc.account == accountBank)
     if(userAccount == undefined) {

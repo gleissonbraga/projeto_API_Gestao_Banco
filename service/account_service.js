@@ -10,11 +10,10 @@ function showBalance(accountBank){
 }
 
 // ajustar status code
-function depositMoney(accountBank, value) {
-    let valueDeposit = accountRepository.depositMoney(accountBank, value)
-    // if(valueDeposit == undefined || req.user.account !== valueDeposit.account) // Testar outro dia
+function depositMoney(accountBank, value, loggedUserAccount) {
+    let valueDeposit = accountRepository.depositMoney(accountBank, value, loggedUserAccount)
     if(valueDeposit == undefined){
-        throw {id: 404, msg: "Esta conta não existe!"}
+        throw {id: 404, msg: "Esta conta não existe ou sua conta está incorreta!"}
     } else {
         if(valueDeposit) {
             throw {id: 200, msg: "Depósito realizado"}
@@ -26,9 +25,9 @@ function depositMoney(accountBank, value) {
 
 // refatorar metodo de lançamento de status (devido a não ter usuário o deposit.balance da erro)
 function withdrawMoney(accountBank, value){
-    let valueWithdraw = accountRepository.withdrawMoney(accountBank, value)
+    let valueWithdraw = accountRepository.withdrawMoney(accountBank, value, loggedUserAccount)
     if(valueWithdraw == undefined){
-        throw {id: 404, msg: "Esta conta não existe!"}
+        throw {id: 404, msg: "Esta conta não existe ou sua conta está incorreta!"}
     } else {
         if(valueWithdraw == true){
             throw {id: 200, msg: "Saque realizado"}

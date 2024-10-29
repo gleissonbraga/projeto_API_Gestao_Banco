@@ -14,10 +14,9 @@ function login(user){
     }
     
     let isValidPassword = bcrypt.compareSync(user.password, userCpf.password)
-    // userCpf.cpf == user.cpf && 
     if(isValidPassword == true) {
 
-        const payload = {name: userCpf.name, Account: userCpf.account, cpf: userCpf.cpf };
+        const payload = {name: userCpf.name, account: userCpf.account, cpf: userCpf.cpf };
         const token = jwt.sign(payload, process.env.JWT_KEY, { expiresIn: '1h'})
         throw {id: 201, msg: token}
     } else {
@@ -30,6 +29,7 @@ function verifyToken(token) {
     try {
         const payload = jwt.verify(token, process.env.JWT_KEY);
         console.log("Payload", payload);
+        return payload
     } catch (error) {
         throw  { id: 401, msg: "Token Inválido!" }
     }
