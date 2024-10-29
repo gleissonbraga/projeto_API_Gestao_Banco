@@ -9,7 +9,7 @@ function login(user){
     }
     let userCpf = userRepository.getUserbyCpf(user.cpf)
     
-    if(!userCpf || isValidPassword == false){
+    if(!userCpf){
         throw {id: 404, msg: "Usuário não existe"}
     }
     

@@ -7,7 +7,6 @@ function showBalance(req, res){
     } catch (error) {
         res.status(error.id).json(error)
     }
-    
 }
 
 

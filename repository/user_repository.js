@@ -2,15 +2,21 @@ const accountRepository = require('./account_repository')
 const bcrypt = require('bcrypt')
 
 
-let listUser = []
+let listUser = [{
+	name: "Gleisson",
+	cpf: "85907219068",
+	password: "$2b$10$d/Ah20fo9aOyZPGgOMBB8.OEoH9rWFtmIZMWZ8KsgQJjxZxnIv9Su",
+	id: 1,
+	account: 492184340
+}, {
+	name: "Gleisson",
+	cpf: "88888888888",
+	password: "$2b$10$d/Ah20fo9aOyZPGgOMBB8.OEoH9rWFtmIZMWZ8KsgQJjxZxnIv9Su",
+	id: 2,
+	account: 492184340
+},]
 
-// {
-// 	name: "Gleisson",
-// 	cpf: "85907219068",
-// 	password: "$2b$10$C63dZB8/H5j/UCbcxBoJNeZDOFlPAuw0yFVUTNKpFbSMBAiInfy82",
-// 	id: 1,
-// 	account: 492184340
-// }
+
 
 
 let idGenerator = 1
