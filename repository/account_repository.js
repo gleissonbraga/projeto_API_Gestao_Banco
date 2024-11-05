@@ -5,6 +5,7 @@ let account = []
 function createdAccount(user){
     const balance = 0
     account.push({
+        id: user.id,
         account: user.account,
         name: user.name,
         cpf: user.cpf,

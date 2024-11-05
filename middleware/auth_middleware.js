@@ -14,7 +14,3 @@ function verifyAccess(req, res, next){
 module.exports = {
     verifyAccess
 }
-
-
-        // const user = loginService.verifyToken(token);
-        // req.user = user; // Armazena o usuário decodificado no req

@@ -34,7 +34,7 @@ function createdUser(user){
     // return userWithoutPassword;
 }
 
-function findUser(id){
+function findUser(id, listUser){
     return listUser.find(user => user.id == id)
 }
 

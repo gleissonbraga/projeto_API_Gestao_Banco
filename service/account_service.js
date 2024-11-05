@@ -24,7 +24,7 @@ function depositMoney(accountBank, value, loggedUserAccount) {
 }
 
 // refatorar metodo de lançamento de status (devido a não ter usuário o deposit.balance da erro)
-function withdrawMoney(accountBank, value){
+function withdrawMoney(accountBank, value, loggedUserAccount){
     let valueWithdraw = accountRepository.withdrawMoney(accountBank, value, loggedUserAccount)
     if(valueWithdraw == undefined){
         throw {id: 404, msg: "Esta conta não existe ou sua conta está incorreta!"}
